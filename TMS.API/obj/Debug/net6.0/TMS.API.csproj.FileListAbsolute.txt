@@ -176,3 +176,5 @@ E:\Uni stuff\Endava\.NET\Project\TMS.API\obj\Debug\net6.0\refint\TMS.API.dll
 E:\Uni stuff\Endava\.NET\Project\TMS.API\obj\Debug\net6.0\TMS.API.pdb
 E:\Uni stuff\Endava\.NET\Project\TMS.API\obj\Debug\net6.0\TMS.API.genruntimeconfig.cache
 E:\Uni stuff\Endava\.NET\Project\TMS.API\obj\Debug\net6.0\ref\TMS.API.dll
+E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\AutoMapper.dll
+E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

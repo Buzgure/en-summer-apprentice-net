@@ -15,16 +15,16 @@ namespace TMS.API.Controller
     [ApiController]
     public class EventController : ControllerBase
     {
-        private readonly IEventRepository eventRepository;
-        public EventController()
+        private readonly IEventRepository _eventRepository;
+        public EventController(IEventRepository eventRepository)
         {
-            eventRepository = new EventRepository();
+            _eventRepository = eventRepository;
         }
 
         [HttpGet]
         public ActionResult<List<EventDTO>> GetAll() 
             {
-            var events = eventRepository.GetAll();
+            var events = _eventRepository.GetAll();
 
 
             var eventsDTO = events.Select(e => new EventDTO()
@@ -45,7 +45,7 @@ namespace TMS.API.Controller
         [HttpGet]
         public ActionResult<EventDTO> GetById(long id)
         {
-            var e = eventRepository.GetEventById(id);
+            var e = _eventRepository.GetEventById(id);
             EventDTO result = new EventDTO();
             result.EventId = e.EventId;
             result.EventName = e.EventName;
@@ -68,7 +68,7 @@ namespace TMS.API.Controller
 
         [HttpGet]
         public ActionResult<List<EventDTO>> GetEventsByEventType(string eventType) {
-            return Ok(eventRepository.getEventByEventType(eventType));
+            return Ok(_eventRepository.getEventByEventType(eventType));
 
 
         }

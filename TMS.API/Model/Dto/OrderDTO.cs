@@ -2,9 +2,9 @@
 {
     public class OrderDTO
     {
-        public long Id { get; set; }
+        public int OrderId { get; set; }
 
-        public long TicketCategoryId { get; set; }
+        public int TicketCategoryId { get; set; }
 
         public string CustomerName { get; set; }
         
