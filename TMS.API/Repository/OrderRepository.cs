@@ -26,30 +26,37 @@ namespace TMS.API.Repository
             _dbContext.SaveChanges();
         }
 
-        public OrderDTO GetOrderById(long id)
+        public Order GetOrderById(long id)
         {
-            throw new NotImplementedException();
+            var orders = _dbContext.Orders.FirstOrDefault(o => o.OrderId == id);
+            if (orders == null)
+                return null;
+            return orders;
         }
 
-        public List<OrderDTO> GetOrders()
+        public List<Order> GetOrders()
         {
             var allOrders = _dbContext.Orders.ToList();
 
-            return allOrders.Select(o => new OrderDTO
-            {
-                OrderId = o.OrderId,
-                TicketCategoryId = o.TicketCategoryId ?? 0,
-                CustomerName = o.Customer.CustomerName,
-                OrderedAt = o.OrderedAt,
-                NumberOfTickets = o.NumberOfTickets ?? 0,
-                TotalPrice = o.TotalPrice ?? 0
+            //return allOrders.Select(o => new OrderDTO
+            //{
+            //    OrderId = o.OrderId,
+            //    TicketCategoryId = o.TicketCategoryId ?? 0,
+            //    CustomerName = o.Customer.CustomerName,
+            //    OrderedAt = o.OrderedAt,
+            //    NumberOfTickets = o.NumberOfTickets ?? 0,
+            //    TotalPrice = o.TotalPrice ?? 0
 
-            }).ToList();
+            //}).ToList();
+            return allOrders;
         }
 
-        public OrderDTO updateOrder(OrderDTO orderDTO)
+        public void updateOrder(Order order)
         {
-            throw new NotImplementedException();
+            //var orderEntity = GetOrderById(order.OrderId);
+            //orderEntity = order;
+            _dbContext.Entry(order).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _dbContext.SaveChanges();
         }
     }
 }

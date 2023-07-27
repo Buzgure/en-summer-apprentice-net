@@ -28,5 +28,19 @@ namespace TMS.API.Controller
 
             return Ok(dtoOrder);
         }
+
+        [HttpPatch]
+        public ActionResult<OrderPatchDTO> patchOrder(OrderPatchDTO orderPatchDTO)
+        {
+           var orderEntity =  _orderRepository.GetOrderById(orderPatchDTO.OrderId);
+            if(orderEntity == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(orderPatchDTO, orderEntity);
+            _orderRepository.updateOrder(orderEntity);
+            return Ok(orderEntity);
+        }
     }
 }

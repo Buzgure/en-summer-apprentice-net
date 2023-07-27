@@ -1,16 +1,17 @@
-﻿using TMS.API.Model.Dto;
+﻿using TMS.API.Model;
+using TMS.API.Model.Dto;
 
 namespace TMS.API.Repository
 {
     public interface IOrderRepository
     {
-        public List<OrderDTO> GetOrders();
+        public List<Order> GetOrders();
 
-        public OrderDTO GetOrderById(long id);
+        public Order GetOrderById(long id);
 
         public OrderDTO addOrder(OrderDTO orderDTO);
 
-        public OrderDTO updateOrder(OrderDTO orderDTO);
+        public void updateOrder(Order order);
 
         public void deleteOrder(long id);  
 
