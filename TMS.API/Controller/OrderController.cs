@@ -42,5 +42,17 @@ namespace TMS.API.Controller
             _orderRepository.updateOrder(orderEntity);
             return Ok(orderEntity);
         }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            var orderEntity = _orderRepository.GetOrderById(id);
+            if(orderEntity == null) {
+            
+            return NotFound();}
+
+            _orderRepository.deleteOrder(orderEntity);
+            return NoContent();
+        }
     }
 }

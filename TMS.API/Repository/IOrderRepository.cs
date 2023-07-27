@@ -13,7 +13,7 @@ namespace TMS.API.Repository
 
         public void updateOrder(Order order);
 
-        public void deleteOrder(long id);  
+        public void deleteOrder(Order order);  
 
 
     }

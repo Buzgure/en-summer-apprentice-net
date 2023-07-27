@@ -20,9 +20,9 @@ namespace TMS.API.Repository
             return order.Entity;
         }
 
-        public void deleteOrder(long id)
+        public void deleteOrder(Order order)
         {
-            _dbContext.Remove(id);
+            _dbContext.Remove(order);
             _dbContext.SaveChanges();
         }
 
