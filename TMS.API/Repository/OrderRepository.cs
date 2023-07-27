@@ -1,4 +1,5 @@
-﻿using TMS.API.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using TMS.API.Model;
 using TMS.API.Model.Dto;
 
 namespace TMS.API.Repository
@@ -26,9 +27,9 @@ namespace TMS.API.Repository
             _dbContext.SaveChanges();
         }
 
-        public Order GetOrderById(long id)
+        public async Task<Order> GetOrderById(long id)
         {
-            var orders = _dbContext.Orders.FirstOrDefault(o => o.OrderId == id);
+            var orders = await _dbContext.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
             if (orders == null)
                 return null;
             return orders;

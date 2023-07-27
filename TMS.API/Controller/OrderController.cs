@@ -30,9 +30,9 @@ namespace TMS.API.Controller
         }
 
         [HttpPatch]
-        public ActionResult<OrderPatchDTO> patchOrder(OrderPatchDTO orderPatchDTO)
+        public async Task<ActionResult<OrderPatchDTO>> patchOrder(OrderPatchDTO orderPatchDTO)
         {
-           var orderEntity =  _orderRepository.GetOrderById(orderPatchDTO.OrderId);
+           var orderEntity =await _orderRepository.GetOrderById(orderPatchDTO.OrderId);
             if(orderEntity == null)
             {
                 return NotFound();
@@ -44,9 +44,9 @@ namespace TMS.API.Controller
         }
 
         [HttpDelete]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var orderEntity = _orderRepository.GetOrderById(id);
+            var orderEntity =await _orderRepository.GetOrderById(id);
             if(orderEntity == null) {
             
             return NotFound();}

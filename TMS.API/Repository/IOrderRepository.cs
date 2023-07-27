@@ -7,7 +7,7 @@ namespace TMS.API.Repository
     {
         public List<Order> GetOrders();
 
-        public Order GetOrderById(long id);
+        public Task<Order> GetOrderById(long id);
 
         public OrderDTO addOrder(OrderDTO orderDTO);
 
