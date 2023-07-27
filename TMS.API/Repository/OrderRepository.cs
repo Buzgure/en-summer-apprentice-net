@@ -31,7 +31,7 @@ namespace TMS.API.Repository
         {
             var orders = await _dbContext.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
             if (orders == null)
-                return null;
+                throw new Exception("The object was not found");
             return orders;
         }
 

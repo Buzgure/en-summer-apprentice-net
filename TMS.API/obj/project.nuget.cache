@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jdRKt4eYpgZ+HfakNukgX528wNmiDzNusU2aWP3bHKatXtYdlGcFSgg4BDPVPdfE4tcPeFPE29Y5H8TVEdgQTg==",
+  "dgSpecHash": "R32NurbFAfVUK5pgA6/yfU7GT9Q/vi4jCXmSiPy0up+TSm/1FTfzWndUBmFruAzbOBrAhDfaRfhn7JRwpyhnKg==",
   "success": true,
   "projectFilePath": "E:\\Uni stuff\\Endava\\.NET\\Project\\TMS.API\\TMS.API.csproj",
   "expectedPackageFiles": [
@@ -48,6 +48,9 @@
     "C:\\Users\\Buz\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Buz\\.nuget\\packages\\nlog\\5.2.2\\nlog.5.2.2.nupkg.sha512",
+    "C:\\Users\\Buz\\.nuget\\packages\\nlog.extensions.logging\\5.3.2\\nlog.extensions.logging.5.3.2.nupkg.sha512",
+    "C:\\Users\\Buz\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.2\\nlog.web.aspnetcore.5.3.2.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

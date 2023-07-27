@@ -29,30 +29,70 @@ namespace TMS.API.Controller
             return Ok(dtoOrder);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<OrderDTO>> GetById(long id)
+        {
+            try
+            {
+                var order = await _orderRepository.GetOrderById(id);
+
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                var orderDTO = _mapper.Map<OrderDTO>(order);
+
+                return Ok(orderDTO);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPatch]
         public async Task<ActionResult<OrderPatchDTO>> patchOrder(OrderPatchDTO orderPatchDTO)
         {
-           var orderEntity =await _orderRepository.GetOrderById(orderPatchDTO.OrderId);
-            if(orderEntity == null)
+            try
             {
-                return NotFound();
-            }
+                var orderEntity = await _orderRepository.GetOrderById(orderPatchDTO.OrderId);
+                if (orderEntity == null)
+                {
+                    return NotFound();
+                }
 
-            _mapper.Map(orderPatchDTO, orderEntity);
-            _orderRepository.updateOrder(orderEntity);
-            return Ok(orderEntity);
+                _mapper.Map(orderPatchDTO, orderEntity);
+                _orderRepository.updateOrder(orderEntity);
+                return Ok(orderEntity);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete]
         public async Task<ActionResult> Delete(int id)
         {
-            var orderEntity =await _orderRepository.GetOrderById(id);
-            if(orderEntity == null) {
-            
-            return NotFound();}
+            try
+            {
+                var orderEntity = await _orderRepository.GetOrderById(id);
+                if (orderEntity == null)
+                {
 
-            _orderRepository.deleteOrder(orderEntity);
-            return NoContent();
+                    return NotFound();
+                }
+
+                _orderRepository.deleteOrder(orderEntity);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
