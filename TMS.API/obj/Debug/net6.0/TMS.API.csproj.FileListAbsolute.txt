@@ -181,3 +181,4 @@ E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\AutoMapper.Extensions.
 E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\NLog.dll
 E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
+E:\Uni stuff\Endava\.NET\Project\TMS.API\bin\Debug\net6.0\nlog.config

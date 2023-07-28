@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TMS.API.Exceptions;
 using TMS.API.Model;
 using TMS.API.Model.Dto;
 
@@ -31,7 +32,7 @@ namespace TMS.API.Repository
         {
             var orders = await _dbContext.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
             if (orders == null)
-                throw new Exception("The object was not found");
+                throw new EntityNotFoundException(id, nameof(Order));
             return orders;
         }
 

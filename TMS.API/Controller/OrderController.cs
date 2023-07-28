@@ -12,11 +12,13 @@ namespace TMS.API.Controller
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public OrderController(IOrderRepository orderRepository, IMapper mapper)
+        public OrderController(IOrderRepository orderRepository, IMapper mapper, ILogger<OrderController> logger)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -32,23 +34,15 @@ namespace TMS.API.Controller
         [HttpGet]
         public async Task<ActionResult<OrderDTO>> GetById(long id)
         {
-            try
-            {
                 var order = await _orderRepository.GetOrderById(id);
 
-                if (order == null)
-                {
-                    return NotFound();
-                }
+                //if (order == null)
+                //{
+                //    return NotFound();
+                //}
                 var orderDTO = _mapper.Map<OrderDTO>(order);
 
                 return Ok(orderDTO);
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpPatch]
