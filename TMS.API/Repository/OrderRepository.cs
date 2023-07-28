@@ -31,32 +31,17 @@ namespace TMS.API.Repository
         public async Task<Order> GetOrderById(long id)
         {
             var orders = await _dbContext.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
-            //if (orders == null)
-            //    throw new EntityNotFoundException(id, nameof(Order));
             return orders;
         }
 
         public List<Order> GetOrders()
         {
             var allOrders = _dbContext.Orders.ToList();
-
-            //return allOrders.Select(o => new OrderDTO
-            //{
-            //    OrderId = o.OrderId,
-            //    TicketCategoryId = o.TicketCategoryId ?? 0,
-            //    CustomerName = o.Customer.CustomerName,
-            //    OrderedAt = o.OrderedAt,
-            //    NumberOfTickets = o.NumberOfTickets ?? 0,
-            //    TotalPrice = o.TotalPrice ?? 0
-
-            //}).ToList();
             return allOrders;
         }
 
         public void updateOrder(Order order)
         {
-            //var orderEntity = GetOrderById(order.OrderId);
-            //orderEntity = order;
             _dbContext.Entry(order).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _dbContext.SaveChanges();
         }

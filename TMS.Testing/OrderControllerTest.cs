@@ -99,11 +99,10 @@ namespace TMS.Testing
         }
 
         [TestMethod]
-        public async Task GetOrderByIdReturnNotFoundWhenNoRecordFound()
+        public async Task GetOrderById_ReturnNotFound_WhenNoRecordFound()
         {
             //Arrange
             _orderRepositoryMock.Setup(moq => moq.GetOrderById(It.IsAny<long>())).Returns(Task.Run(() => (Order)null));
-            //_mapperMoq.Setup(moq => moq.Map<List<OrderDTO>>(It.IsAny<List<Order>>())).Returns((List<OrderDTO>)null);
             var controller = new OrderController(_orderRepositoryMock.Object, _mapperMoq.Object);
             
             
@@ -116,7 +115,7 @@ namespace TMS.Testing
             Assert.IsTrue(orderResult.StatusCode == 404);
         }
         [TestMethod]
-        public async Task GetOrderByIdReturnNotFoundWhenDTOIsNull()
+        public async Task GetOrderById_ReturnNotFound_WhenDTOIsNull()
         {
             //Arrange
             _orderRepositoryMock.Setup(moq => moq.GetOrderById(It.IsAny<long>())).Returns(Task.Run(() => _moqList.First()));
@@ -134,7 +133,7 @@ namespace TMS.Testing
         }
 
         [TestMethod]
-        public async Task GetOrderByIdReturnFirstOccurenceWhenRepoNotNull()
+        public async Task GetOrderById_ValidIdProvided_OrderDTOReturned()
         {
             _orderRepositoryMock.Setup(moq => moq.GetOrderById(It.IsAny<long>())).Returns(Task.Run(() => _moqList.First()));
             _mapperMoq.Setup(moq => moq.Map<OrderDTO>(It.IsAny<Order>())).Returns(_dtoMoq.First());
