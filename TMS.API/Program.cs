@@ -3,6 +3,7 @@ using NLog.Web;
 using System.Text.Json.Serialization;
 using TMS.API.Middleware;
 using TMS.API.Repository;
+using TMS.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,3 +43,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program { }

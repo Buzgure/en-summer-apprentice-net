@@ -16,9 +16,15 @@ namespace TMS.API.Controller
 
         public OrderController(IOrderRepository orderRepository, IMapper mapper, ILogger<OrderController> logger)
         {
-            _orderRepository = orderRepository;
-            _mapper = mapper;
-            _logger = logger;
+            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(_orderRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
+            _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
+        }
+
+        public OrderController(IOrderRepository orderRepository, IMapper mapper)
+        {
+            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(_orderRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -36,11 +42,16 @@ namespace TMS.API.Controller
         {
                 var order = await _orderRepository.GetOrderById(id);
 
-                //if (order == null)
-                //{
-                //    return NotFound();
-                //}
-                var orderDTO = _mapper.Map<OrderDTO>(order);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            var orderDTO = _mapper.Map<OrderDTO>(order);
+
+            if (orderDTO == null)
+            {
+                return NotFound();
+            }
 
                 return Ok(orderDTO);
         }

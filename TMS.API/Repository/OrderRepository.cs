@@ -31,8 +31,8 @@ namespace TMS.API.Repository
         public async Task<Order> GetOrderById(long id)
         {
             var orders = await _dbContext.Orders.Where(o => o.OrderId == id).FirstOrDefaultAsync();
-            if (orders == null)
-                throw new EntityNotFoundException(id, nameof(Order));
+            //if (orders == null)
+            //    throw new EntityNotFoundException(id, nameof(Order));
             return orders;
         }
 
