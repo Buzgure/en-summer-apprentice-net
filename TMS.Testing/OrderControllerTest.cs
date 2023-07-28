@@ -132,5 +132,27 @@ namespace TMS.Testing
             //Assert
             Assert.IsTrue(orderResult.StatusCode == 404);
         }
+
+        [TestMethod]
+        public async Task GetOrderByIdReturnFirstOccurenceWhenRepoNotNull()
+        {
+            _orderRepositoryMock.Setup(moq => moq.GetOrderById(It.IsAny<long>())).Returns(Task.Run(() => _moqList.First()));
+            _mapperMoq.Setup(moq => moq.Map<OrderDTO>(It.IsAny<Order>())).Returns(_dtoMoq.First());
+            var controller = new OrderController(_orderRepositoryMock.Object, _mapperMoq.Object);
+
+
+            //Act
+            var result = await controller.GetById(1);
+            var orderResult = result.Result as OkObjectResult;
+            var orderCount = orderResult.Value as OrderDTO;
+
+
+
+
+            //Assert
+
+            Assert.IsFalse(string.IsNullOrEmpty(orderCount.CustomerName));
+            Assert.AreEqual(1, orderCount.OrderId);
+        }
     }
 }
