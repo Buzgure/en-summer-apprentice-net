@@ -38,10 +38,9 @@ namespace TMS.API.Repository
             return _event;
 
         }
-
-        public void DeleteEvent(long id)
+        public void DeleteEvent(Event @event)
         {
-            var entityEntry = _dbContext.Remove(id);
+            var entityEntry = _dbContext.Remove(@event);
             _dbContext.SaveChanges();
         }
 
@@ -51,7 +50,7 @@ namespace TMS.API.Repository
             return @events;
         }
 
-        public Event GetEventById(long id)
+        public async Task<Event> GetEventById(int id)
         {
             var @event = _dbContext.Events.FirstOrDefault(e => e.EventId == id);
             if (@event == null)

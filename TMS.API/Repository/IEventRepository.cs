@@ -7,13 +7,13 @@ namespace TMS.API.Repository
     {
         IEnumerable<Event> GetAll();
 
-        Event GetEventById(long id);
+        Task<Event> GetEventById(int id);
 
         Event AddEvent(Event @event);
 
         Event UpdateEvent(Event @event);
 
-        void DeleteEvent(long id);
+        void DeleteEvent(Event @event);
 
         public List<EventDTO> getEventByEventType(string eventType);
         public Task<Event> EventDTOToEvent(EventDTO eventDTO);

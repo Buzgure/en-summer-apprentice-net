@@ -44,9 +44,9 @@ namespace TMS.API.Controller
 
 
         [HttpGet]
-        public ActionResult<EventDTO> GetById(long id)
+        public ActionResult<EventDTO> GetById(int id)
         {
-            var e = _eventRepository.GetEventById(id);
+            var e = _eventRepository.GetEventById(id).Result;
             EventDTO result = new EventDTO();
             result.EventId = e.EventId;
             result.EventName = e.EventName;
@@ -93,6 +93,28 @@ namespace TMS.API.Controller
                 return BadRequest(ex.Message);
             }
 
+        }
+
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteEvent(int id)
+        {
+            try
+            {
+                var eventEntity = await _eventRepository.GetEventById(id);
+                if (eventEntity == null)
+                {
+                    return NotFound();
+                }
+                _eventRepository.DeleteEvent(eventEntity);
+                return NoContent();
+
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }

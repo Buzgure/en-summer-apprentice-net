@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h7s+3cOUhuvHHyFoD9bX7eS3yFpkcz5wB+L7lwsjaTE7pfAFSzDsGdkUg2gAZ44AheZvpXCiLJSCnZr5cLNgWQ==",
+  "dgSpecHash": "jIGhbbCDjJoayY9LNCgmqtAJNPR0uiu7x4mXb+cBMkwI8/h15AWs7XReuNNNzUtBFr8r7K8vzSliZUTLjMWPdQ==",
   "success": true,
-  "projectFilePath": "E:\\Uni stuff\\Endava\\.NET\\Project\\TMS.Testing\\TMS.Testing.csproj",
+  "projectFilePath": "E:\\Uni stuff\\Endava\\.NET\\Project\\.NET\\en-summer-apprentice-net\\TMS.Testing\\TMS.Testing.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Buz\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Buz\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
