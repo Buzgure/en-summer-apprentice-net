@@ -28,16 +28,6 @@ namespace TMS.API.Controller
         public ActionResult<List<EventDTO>> GetAll() 
             {
             var events = _eventRepository.GetAll();
-
-
-            //var eventsDTO = events.Select(e => new EventDTO()
-            //{
-            //    EventId = e.EventId,
-            //    EventDescription = e.EventDescription,
-            //    EventName = e.EventName,
-            //    EventType = e.EventType?.EventTypeName ?? string.Empty,
-            //    Venue = e.Venue?.Location ?? string.Empty
-            //});
             var eventsDto = _mapper.Map<List<EventDTO>>(events);
             return Ok(eventsDto);
         }

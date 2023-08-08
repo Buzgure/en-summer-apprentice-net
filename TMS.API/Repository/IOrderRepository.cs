@@ -9,11 +9,13 @@ namespace TMS.API.Repository
 
         public Task<Order> GetOrderById(long id);
 
-        public OrderDTO addOrder(OrderDTO orderDTO);
+        public Order addOrder(Order _order);
 
         public void updateOrder(Order order);
 
-        public void deleteOrder(Order order);  
+        public void deleteOrder(Order order);
+
+        public Task<Order> orderDTOToOrder(OrderDTO orderDTO);
 
 
     }

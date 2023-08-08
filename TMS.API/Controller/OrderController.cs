@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TMS.API.Model;
 using TMS.API.Model.Dto;
 using TMS.API.Repository;
 
@@ -74,6 +75,21 @@ namespace TMS.API.Controller
             catch (Exception ex)
             {
 
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Order>> addOrder(OrderDTO orderDTO)
+        {
+            try
+            {
+                var order = await _orderRepository.orderDTOToOrder(orderDTO);
+                _orderRepository.addOrder(order);
+                return Ok(order);
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }

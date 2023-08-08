@@ -14,10 +14,10 @@ namespace TMS.API.Repository
             _dbContext = new TicketManagementSystemContext();
         }
 
-        public OrderDTO addOrder(OrderDTO orderDTO)
+        public Order addOrder(Order _order)
         {
-            
-            var order = _dbContext.Add(orderDTO);
+
+            var order = _dbContext.Add(_order);
             _dbContext.SaveChanges();
             return order.Entity;
         }
@@ -38,6 +38,22 @@ namespace TMS.API.Repository
         {
             var allOrders = _dbContext.Orders.ToList();
             return allOrders;
+        }
+
+        public async Task<Order> orderDTOToOrder(OrderDTO orderDTO)
+        {
+            var order = new Order();
+
+            order.OrderId = orderDTO.OrderId;
+            order.OrderedAt = orderDTO.OrderedAt;
+            order.TotalPrice = orderDTO.TotalPrice;
+            order.TicketCategory = _dbContext.TicketCategories.Where(t => t.TicketCategoryId == orderDTO.TicketCategoryId).FirstOrDefault();
+            order.Customer = _dbContext.Customers.Where(c => c.CustomerName == orderDTO.CustomerName).FirstOrDefault();
+            order.CustomerId = order.Customer.CustomerId;
+            order.TicketCategoryId = orderDTO.TicketCategoryId;
+            order.NumberOfTickets = orderDTO.NumberOfTickets;
+            return order;
+
         }
 
         public void updateOrder(Order order)
