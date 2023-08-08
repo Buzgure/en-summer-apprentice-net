@@ -16,5 +16,6 @@ namespace TMS.API.Repository
         void DeleteEvent(long id);
 
         public List<EventDTO> getEventByEventType(string eventType);
+        public Task<Event> EventDTOToEvent(EventDTO eventDTO);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -16,9 +17,11 @@ namespace TMS.API.Controller
     public class EventController : ControllerBase
     {
         private readonly IEventRepository _eventRepository;
-        public EventController(IEventRepository eventRepository)
+        private readonly IMapper _mapper;
+        public EventController(IEventRepository eventRepository, IMapper mapper)
         {
-            _eventRepository = eventRepository;
+            _eventRepository = eventRepository ?? throw new ArgumentNullException(nameof(_eventRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
         }
 
         [HttpGet]
@@ -27,18 +30,16 @@ namespace TMS.API.Controller
             var events = _eventRepository.GetAll();
 
 
-            var eventsDTO = events.Select(e => new EventDTO()
-            {
-                EventId = e.EventId,
-                EventDescription = e.EventDescription,
-                EventName = e.EventName,
-                EventType = e.EventType?.EventTypeName ?? string.Empty,
-                Venue = e.Venue?.Location ?? string.Empty
-            });
-
-
-            var filterEvents = events.Where(x=>x.EventDescription.Equals("Muzica Electronica si nu numai")).FirstOrDefault();
-            return Ok(eventsDTO);
+            //var eventsDTO = events.Select(e => new EventDTO()
+            //{
+            //    EventId = e.EventId,
+            //    EventDescription = e.EventDescription,
+            //    EventName = e.EventName,
+            //    EventType = e.EventType?.EventTypeName ?? string.Empty,
+            //    Venue = e.Venue?.Location ?? string.Empty
+            //});
+            var eventsDto = _mapper.Map<List<EventDTO>>(events);
+            return Ok(eventsDto);
         }
 
 
@@ -70,6 +71,27 @@ namespace TMS.API.Controller
         public ActionResult<List<EventDTO>> GetEventsByEventType(string eventType) {
             return Ok(_eventRepository.getEventByEventType(eventType));
 
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Event>> AddEvent(EventDTO eventDto)
+        {
+            try
+            {
+                var _event = await _eventRepository.EventDTOToEvent(eventDto);
+                //_mapper.Map(eventDto, _event);
+
+                _eventRepository.AddEvent(_event);
+                return Ok(_event);
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
         }
 

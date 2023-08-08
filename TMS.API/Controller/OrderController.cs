@@ -14,12 +14,12 @@ namespace TMS.API.Controller
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
 
-        public OrderController(IOrderRepository orderRepository, IMapper mapper, ILogger<OrderController> logger)
-        {
-            _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(_orderRepository));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
-            _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
-        }
+        //public OrderController(IOrderRepository orderRepository, IMapper mapper, ILogger<OrderController> logger)
+        //{
+        //    _orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(_orderRepository));
+        //    _mapper = mapper ?? throw new ArgumentNullException(nameof(_mapper));
+        //    _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
+        //}
 
         public OrderController(IOrderRepository orderRepository, IMapper mapper)
         {
