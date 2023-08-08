@@ -24,4 +24,8 @@ public partial class Event
     public virtual ICollection<TicketCategory> TicketCategories { get; set; } = new List<TicketCategory>();
 
     public virtual Venue? Venue { get; set; }
+
+    public Event()
+    {
+    }
 }

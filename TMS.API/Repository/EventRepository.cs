@@ -23,6 +23,22 @@ namespace TMS.API.Repository
             
         }
 
+        public async Task<Event> EventDTOToEvent(EventDTO eventDTO)
+        {
+            var _event = new Event();
+            _event.Venue = _dbContext.Venues.FirstOrDefault(v => v.Location == eventDTO.Venue);
+            _event.VenueId = _event.Venue.VenueId;
+            _event.EventType = _dbContext.EventTypes.FirstOrDefault(eT => eT.EventTypeName == eventDTO.EventType);
+            _event.EventTypeId = _event.EventType.EventTypeId;
+            _event.StartDate = eventDTO.StartDate;
+            _event.EndDate = eventDTO.EndDate;
+            _event.EventDescription = eventDTO.EventDescription;
+            _event.EventName = eventDTO.EventName;
+            _event.EventId = eventDTO.EventId;
+            return _event;
+
+        }
+
         public void DeleteEvent(long id)
         {
             var entityEntry = _dbContext.Remove(id);
