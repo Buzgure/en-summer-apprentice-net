@@ -16,5 +16,7 @@
 
         public DateTime? EndDate { get; set; }
 
+        public List<TicketCategoryDTO> TicketCategory { get; set; }
+
     }
 }

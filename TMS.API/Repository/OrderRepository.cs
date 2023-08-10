@@ -61,5 +61,11 @@ namespace TMS.API.Repository
             _dbContext.Entry(order).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _dbContext.SaveChanges();
         }
+
+        public async Task<List<Order>> getAllOrdersByCustomer(int id)
+        {
+            var ordersByCustomer = await _dbContext.Orders.Where(o => o.CustomerId == id).ToListAsync();
+            return ordersByCustomer;
+        }
     }
 }

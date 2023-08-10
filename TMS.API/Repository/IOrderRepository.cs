@@ -16,6 +16,7 @@ namespace TMS.API.Repository
         public void deleteOrder(Order order);
 
         public Task<Order> orderDTOToOrder(OrderDTO orderDTO);
+        public Task<List<Order>> getAllOrdersByCustomer(int id);
 
 
     }

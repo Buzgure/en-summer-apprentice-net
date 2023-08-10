@@ -115,5 +115,18 @@ namespace TMS.API.Controller
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<OrderDTO>>> getAllOrdersByCustomerId(int id)
+        {
+            var ordersByCustomerId = await _orderRepository.getAllOrdersByCustomer(id);
+            if (ordersByCustomerId == null)
+            {
+                return NotFound();
+            }
+            var orderDTO = _mapper.Map<List<OrderDTO>>(ordersByCustomerId);
+            return Ok(orderDTO);
+
+        }
     }
 }
