@@ -29,7 +29,7 @@ public partial class TicketManagementSystemContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-08FV6VI\\SQLEXPRESS;Initial Catalog=Ticket_Management_System;Integrated Security=True;encrypt=false").UseLazyLoadingProxies();
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-08FV6VI\\SQLEXPRESS;Initial Catalog=Ticket_Management_System;Integrated Security=True;TrustServerCertificate=True;encrypt=false;").UseLazyLoadingProxies();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -63,6 +63,10 @@ public partial class TicketManagementSystemContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
             entity.Property(e => e.EventTypeId).HasColumnName("EventTypeID");
+            entity.Property(e => e.ImageUrl)
+                .HasMaxLength(500)
+                .IsUnicode(false)
+                .HasColumnName("image_url");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
             entity.Property(e => e.VenueId).HasColumnName("VenueID");
 

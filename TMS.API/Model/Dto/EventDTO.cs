@@ -1,4 +1,6 @@
-﻿namespace TMS.API.Model.Dto
+﻿using System.Net.Sockets;
+
+namespace TMS.API.Model.Dto
 {
     public class EventDTO
     {
@@ -17,6 +19,8 @@
         public DateTime? EndDate { get; set; }
 
         public List<TicketCategoryDTO> TicketCategory { get; set; }
+
+        public string? ImageUrl { get; set; }
 
     }
 }

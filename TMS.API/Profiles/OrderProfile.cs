@@ -10,7 +10,7 @@ namespace TMS.API.Profiles
 
         public OrderProfile() {
             
-            CreateMap<Order, OrderDTO>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.CustomerName));
+            CreateMap<Order, OrderDTO>().ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.CustomerName)).ForMember(dest => dest.TicketCategoryName, opt => opt.MapFrom(src => src.TicketCategory.Description));
             CreateMap<Order, OrderPatchDTO>().ReverseMap();
 
 

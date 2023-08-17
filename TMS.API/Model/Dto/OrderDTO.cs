@@ -13,6 +13,8 @@
         public int NumberOfTickets { get; set; }
 
         public float TotalPrice { get; set; }
+
+        public string TicketCategoryName { get; set; }
         
     }
 }
