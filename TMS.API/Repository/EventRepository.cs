@@ -70,20 +70,29 @@ namespace TMS.API.Repository
 
         }
 
-        public List<EventDTO> getEventByEventType(string eventType)
+        public List<Event> getEventByEventType(string eventType)
         {
             var allEvents = _dbContext.Events.ToList();
-            var eventsByType = allEvents.FindAll(e => (e.EventType?.EventTypeName ?? string.Empty).Equals(eventType)).ToList();
-            var dtoEventsByType = eventsByType.Select(e => new EventDTO
+            if (eventType == null)
             {
-                EventId = e.EventId,
-                EventName = e.EventName,
-                EventType = e.EventType.EventTypeName,
-                EventDescription = e.EventDescription,
-                Venue = e.Venue.Location
+                return allEvents;
+            }
+            else
+            {
+                
+                var eventsByType = allEvents.FindAll(e => (e.EventType?.EventTypeName ?? string.Empty).Equals(eventType)).ToList();
+                //var dtoEventsByType = eventsByType.Select(e => new EventDTO
+                //{
+                //    EventId = e.EventId,
+                //    EventName = e.EventName,
+                //    EventType = e.EventType.EventTypeName,
+                //    EventDescription = e.EventDescription,
+                //    Venue = e.Venue.Location,
 
-            });
-            return dtoEventsByType.ToList();
+                //});
+                return eventsByType;
+            }
+            
         }
     }
 }

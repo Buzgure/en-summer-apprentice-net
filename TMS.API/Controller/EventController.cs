@@ -59,8 +59,15 @@ namespace TMS.API.Controller
 
         [HttpGet]
         public ActionResult<List<EventDTO>> GetEventsByEventType(string eventType) {
-            return Ok(_eventRepository.getEventByEventType(eventType));
-
+            //return Ok(_eventRepository.getEventByEventType(eventType));
+            if (eventType == null) return Ok(_eventRepository.GetAll());
+            else
+            {
+                var events = _eventRepository.getEventByEventType(eventType);
+                var dtoEvents = _mapper.Map<List<EventDTO>>(events);
+                return Ok(dtoEvents);
+            }
+            
 
         }
 
